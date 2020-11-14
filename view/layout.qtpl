@@ -1,0 +1,21 @@
+{% func Layout(title string, content string) %}
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>{%s title %}</title>
+      <meta charset="UTF-8">
+      <meta name="description" content="Bookmark management tool">
+      <meta name="keywords" content="bookmark,bookmarks">
+      <meta name="author" content="sparkymat">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="/css/uikit.min.css" />
+      <script src="/js/uikit.min.js"></script>
+      <script src="/js/uikit-icons.min.js"></script>
+    </head>
+    <body>
+      <div uk-grid>
+        {%s= content %}
+      </div>
+    </body>
+  </html>
+{% endfunc %}
