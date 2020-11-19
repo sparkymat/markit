@@ -15,3 +15,5 @@
 # vendor/
 finchbookmark
 .env
+
+css/node_modules
