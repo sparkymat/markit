@@ -34,46 +34,44 @@ func StreamLayout(qw422016 *qt422016.Writer, title string, content string) {
       <meta name="keywords" content="bookmark,bookmarks">
       <meta name="author" content="sparkymat">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="/css/uikit.min.css" />
-      <script src="/js/uikit.min.js"></script>
-      <script src="/js/uikit-icons.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="/css/main.css">
     </head>
     <body>
       <div uk-grid>
         `)
-//line view/layout.qtpl:17
+//line view/layout.qtpl:15
 	qw422016.N().S(content)
-//line view/layout.qtpl:17
+//line view/layout.qtpl:15
 	qw422016.N().S(`
       </div>
     </body>
   </html>
 `)
-//line view/layout.qtpl:21
+//line view/layout.qtpl:19
 }
 
-//line view/layout.qtpl:21
+//line view/layout.qtpl:19
 func WriteLayout(qq422016 qtio422016.Writer, title string, content string) {
-//line view/layout.qtpl:21
+//line view/layout.qtpl:19
 	qw422016 := qt422016.AcquireWriter(qq422016)
-//line view/layout.qtpl:21
+//line view/layout.qtpl:19
 	StreamLayout(qw422016, title, content)
-//line view/layout.qtpl:21
+//line view/layout.qtpl:19
 	qt422016.ReleaseWriter(qw422016)
-//line view/layout.qtpl:21
+//line view/layout.qtpl:19
 }
 
-//line view/layout.qtpl:21
+//line view/layout.qtpl:19
 func Layout(title string, content string) string {
-//line view/layout.qtpl:21
+//line view/layout.qtpl:19
 	qb422016 := qt422016.AcquireByteBuffer()
-//line view/layout.qtpl:21
+//line view/layout.qtpl:19
 	WriteLayout(qb422016, title, content)
-//line view/layout.qtpl:21
+//line view/layout.qtpl:19
 	qs422016 := string(qb422016.B)
-//line view/layout.qtpl:21
+//line view/layout.qtpl:19
 	qt422016.ReleaseByteBuffer(qb422016)
-//line view/layout.qtpl:21
+//line view/layout.qtpl:19
 	return qs422016
-//line view/layout.qtpl:21
+//line view/layout.qtpl:19
 }
