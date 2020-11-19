@@ -1,12 +1,16 @@
+{% import "github.com/sparkymat/markit/view/partial" %}
+
 {% func NewSession() %}
-  <div class="max-w-sm mx-auto flex flex-col p-6 bg-white rounded-lg shadow-lg mt-16">
-    <form action="/login" method="POST">
-      <div class="pt-1">
-        <h3 class="text-3xl text-gray-900 font-light mb-3 mt-3">Login</h4>
-        <input type="text" name="username" id="username" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-3" placeholder="Username" />
-        <input type="password" name="password" id="password" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-2" placeholder="Password" />
-        <input type="submit" class="bg-blue-500 hover:bg-blue-600 hover:shadow-inner text-white font-bold font-mono w-full p-4 mt-2 rounded-sm shadow" value="Login" />
-      </div>
-    </form>
-  </div>
+  {%= partial.Card(sessionForm()) %}
+{% endfunc %}
+
+{% func sessionForm() %}
+  <form action="/login" method="POST">
+    <div class="pt-1">
+      <h3 class="text-3xl text-gray-900 font-light mb-3 mt-3">Login</h4>
+      <input type="text" name="username" id="username" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-3" placeholder="Username" />
+      <input type="password" name="password" id="password" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-2" placeholder="Password" />
+      <input type="submit" class="bg-blue-500 hover:bg-blue-600 hover:shadow-inner text-white font-bold font-mono w-full p-4 mt-2 rounded-sm shadow" value="Login" />
+    </div>
+  </form>
 {% endfunc %}

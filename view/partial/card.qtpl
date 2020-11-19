@@ -1,0 +1,5 @@
+{% func Card(body string) %}
+  <div class="max-w-sm mx-auto flex flex-col p-6 bg-white rounded-lg shadow-lg mt-16">
+    {%s= body %}
+  </div>
+{% endfunc %}

@@ -5,58 +5,98 @@
 package page
 
 //line view/page/new_session.qtpl:1
+import "github.com/sparkymat/markit/view/partial"
+
+//line view/page/new_session.qtpl:3
 import (
 	qtio422016 "io"
 
 	qt422016 "github.com/valyala/quicktemplate"
 )
 
-//line view/page/new_session.qtpl:1
+//line view/page/new_session.qtpl:3
 var (
 	_ = qtio422016.Copy
 	_ = qt422016.AcquireByteBuffer
 )
 
-//line view/page/new_session.qtpl:1
+//line view/page/new_session.qtpl:3
 func StreamNewSession(qw422016 *qt422016.Writer) {
-//line view/page/new_session.qtpl:1
+//line view/page/new_session.qtpl:3
 	qw422016.N().S(`
-  <div class="max-w-sm mx-auto flex flex-col p-6 bg-white rounded-lg shadow-lg mt-16">
-    <form action="/login" method="POST">
-      <div class="pt-1">
-        <h3 class="text-3xl text-gray-900 font-light mb-3 mt-3">Login</h4>
-        <input type="text" name="username" id="username" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-3" placeholder="Username" />
-        <input type="password" name="password" id="password" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-2" placeholder="Password" />
-        <input type="submit" class="bg-blue-500 hover:bg-blue-600 hover:shadow-inner text-white font-bold font-mono w-full p-4 mt-2 rounded-sm shadow" value="Login" />
-      </div>
-    </form>
-  </div>
+  `)
+//line view/page/new_session.qtpl:4
+	partial.StreamCard(qw422016, sessionForm())
+//line view/page/new_session.qtpl:4
+	qw422016.N().S(`
 `)
-//line view/page/new_session.qtpl:12
+//line view/page/new_session.qtpl:5
 }
 
-//line view/page/new_session.qtpl:12
+//line view/page/new_session.qtpl:5
 func WriteNewSession(qq422016 qtio422016.Writer) {
-//line view/page/new_session.qtpl:12
+//line view/page/new_session.qtpl:5
 	qw422016 := qt422016.AcquireWriter(qq422016)
-//line view/page/new_session.qtpl:12
+//line view/page/new_session.qtpl:5
 	StreamNewSession(qw422016)
-//line view/page/new_session.qtpl:12
+//line view/page/new_session.qtpl:5
 	qt422016.ReleaseWriter(qw422016)
-//line view/page/new_session.qtpl:12
+//line view/page/new_session.qtpl:5
 }
 
-//line view/page/new_session.qtpl:12
+//line view/page/new_session.qtpl:5
 func NewSession() string {
-//line view/page/new_session.qtpl:12
+//line view/page/new_session.qtpl:5
 	qb422016 := qt422016.AcquireByteBuffer()
-//line view/page/new_session.qtpl:12
+//line view/page/new_session.qtpl:5
 	WriteNewSession(qb422016)
-//line view/page/new_session.qtpl:12
+//line view/page/new_session.qtpl:5
 	qs422016 := string(qb422016.B)
-//line view/page/new_session.qtpl:12
+//line view/page/new_session.qtpl:5
 	qt422016.ReleaseByteBuffer(qb422016)
-//line view/page/new_session.qtpl:12
+//line view/page/new_session.qtpl:5
 	return qs422016
-//line view/page/new_session.qtpl:12
+//line view/page/new_session.qtpl:5
+}
+
+//line view/page/new_session.qtpl:7
+func streamsessionForm(qw422016 *qt422016.Writer) {
+//line view/page/new_session.qtpl:7
+	qw422016.N().S(`
+  <form action="/login" method="POST">
+    <div class="pt-1">
+      <h3 class="text-3xl text-gray-900 font-light mb-3 mt-3">Login</h4>
+      <input type="text" name="username" id="username" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-3" placeholder="Username" />
+      <input type="password" name="password" id="password" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-2" placeholder="Password" />
+      <input type="submit" class="bg-blue-500 hover:bg-blue-600 hover:shadow-inner text-white font-bold font-mono w-full p-4 mt-2 rounded-sm shadow" value="Login" />
+    </div>
+  </form>
+`)
+//line view/page/new_session.qtpl:16
+}
+
+//line view/page/new_session.qtpl:16
+func writesessionForm(qq422016 qtio422016.Writer) {
+//line view/page/new_session.qtpl:16
+	qw422016 := qt422016.AcquireWriter(qq422016)
+//line view/page/new_session.qtpl:16
+	streamsessionForm(qw422016)
+//line view/page/new_session.qtpl:16
+	qt422016.ReleaseWriter(qw422016)
+//line view/page/new_session.qtpl:16
+}
+
+//line view/page/new_session.qtpl:16
+func sessionForm() string {
+//line view/page/new_session.qtpl:16
+	qb422016 := qt422016.AcquireByteBuffer()
+//line view/page/new_session.qtpl:16
+	writesessionForm(qb422016)
+//line view/page/new_session.qtpl:16
+	qs422016 := string(qb422016.B)
+//line view/page/new_session.qtpl:16
+	qt422016.ReleaseByteBuffer(qb422016)
+//line view/page/new_session.qtpl:16
+	return qs422016
+//line view/page/new_session.qtpl:16
 }
