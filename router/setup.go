@@ -59,6 +59,10 @@ func Setup(router *echo.Echo, config Config) {
 		ContentSecurityPolicy: "default-src 'self'",
 	}))
 	router.Use(session.Middleware(sessions.NewCookieStore([]byte(config.SessionSecret()))))
+	router.Use(middleware.GzipWithConfig(middleware.GzipConfig{
+		Skipper: middleware.DefaultSkipper,
+		Level:   5,
+	}))
 
 	router.GET("/health", func(c echo.Context) error {
 		return c.String(http.StatusOK, "OK")
