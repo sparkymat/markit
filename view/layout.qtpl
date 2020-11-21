@@ -1,3 +1,5 @@
+{% import "github.com/sparkymat/markit/view/partial" %}
+
 {% func Layout(title string, content string) %}
   <!DOCTYPE html>
   <html>
@@ -11,6 +13,7 @@
       <link rel="stylesheet" type="text/css" href="/css/main.css">
     </head>
     <body>
+      {%= partial.Logo() %}
       <div uk-grid>
         {%s= content %}
       </div>

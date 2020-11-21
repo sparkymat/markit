@@ -5,29 +5,32 @@
 package view
 
 //line view/layout.qtpl:1
+import "github.com/sparkymat/markit/view/partial"
+
+//line view/layout.qtpl:3
 import (
 	qtio422016 "io"
 
 	qt422016 "github.com/valyala/quicktemplate"
 )
 
-//line view/layout.qtpl:1
+//line view/layout.qtpl:3
 var (
 	_ = qtio422016.Copy
 	_ = qt422016.AcquireByteBuffer
 )
 
-//line view/layout.qtpl:1
+//line view/layout.qtpl:3
 func StreamLayout(qw422016 *qt422016.Writer, title string, content string) {
-//line view/layout.qtpl:1
+//line view/layout.qtpl:3
 	qw422016.N().S(`
   <!DOCTYPE html>
   <html>
     <head>
       <title>`)
-//line view/layout.qtpl:5
+//line view/layout.qtpl:7
 	qw422016.E().S(title)
-//line view/layout.qtpl:5
+//line view/layout.qtpl:7
 	qw422016.N().S(`</title>
       <meta charset="UTF-8">
       <meta name="description" content="Bookmark management tool">
@@ -37,41 +40,46 @@ func StreamLayout(qw422016 *qt422016.Writer, title string, content string) {
       <link rel="stylesheet" type="text/css" href="/css/main.css">
     </head>
     <body>
+      `)
+//line view/layout.qtpl:16
+	partial.StreamLogo(qw422016)
+//line view/layout.qtpl:16
+	qw422016.N().S(`
       <div uk-grid>
         `)
-//line view/layout.qtpl:15
+//line view/layout.qtpl:18
 	qw422016.N().S(content)
-//line view/layout.qtpl:15
+//line view/layout.qtpl:18
 	qw422016.N().S(`
       </div>
     </body>
   </html>
 `)
-//line view/layout.qtpl:19
+//line view/layout.qtpl:22
 }
 
-//line view/layout.qtpl:19
+//line view/layout.qtpl:22
 func WriteLayout(qq422016 qtio422016.Writer, title string, content string) {
-//line view/layout.qtpl:19
+//line view/layout.qtpl:22
 	qw422016 := qt422016.AcquireWriter(qq422016)
-//line view/layout.qtpl:19
+//line view/layout.qtpl:22
 	StreamLayout(qw422016, title, content)
-//line view/layout.qtpl:19
+//line view/layout.qtpl:22
 	qt422016.ReleaseWriter(qw422016)
-//line view/layout.qtpl:19
+//line view/layout.qtpl:22
 }
 
-//line view/layout.qtpl:19
+//line view/layout.qtpl:22
 func Layout(title string, content string) string {
-//line view/layout.qtpl:19
+//line view/layout.qtpl:22
 	qb422016 := qt422016.AcquireByteBuffer()
-//line view/layout.qtpl:19
+//line view/layout.qtpl:22
 	WriteLayout(qb422016, title, content)
-//line view/layout.qtpl:19
+//line view/layout.qtpl:22
 	qs422016 := string(qb422016.B)
-//line view/layout.qtpl:19
+//line view/layout.qtpl:22
 	qt422016.ReleaseByteBuffer(qb422016)
-//line view/layout.qtpl:19
+//line view/layout.qtpl:22
 	return qs422016
-//line view/layout.qtpl:19
+//line view/layout.qtpl:22
 }
