@@ -1,0 +1,3 @@
+{% func SubmitButton(label string) %}
+  <button type="submit" class="bg-blue-500 hover:bg-blue-600 hover:shadow-inner text-white font-bold font-mono w-full p-4 mt-2 rounded-sm shadow">{%s label %}</button>
+{% endfunc %}

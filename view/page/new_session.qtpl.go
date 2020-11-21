@@ -65,10 +65,26 @@ func streamsessionForm(qw422016 *qt422016.Writer) {
 	qw422016.N().S(`
   <form action="/login" method="POST">
     <div class="pt-1">
-      <h3 class="text-3xl text-gray-900 font-light mb-3 mt-3">Login</h4>
-      <input type="text" name="username" id="username" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-3" placeholder="Username" />
-      <input type="password" name="password" id="password" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-2" placeholder="Password" />
-      <input type="submit" class="bg-blue-500 hover:bg-blue-600 hover:shadow-inner text-white font-bold font-mono w-full p-4 mt-2 rounded-sm shadow" value="Login" />
+      `)
+//line view/page/new_session.qtpl:10
+	partial.StreamSubHeading(qw422016, "Login")
+//line view/page/new_session.qtpl:10
+	qw422016.N().S(`
+      `)
+//line view/page/new_session.qtpl:11
+	partial.StreamTextInput(qw422016, "username", "username", "Username")
+//line view/page/new_session.qtpl:11
+	qw422016.N().S(`
+      `)
+//line view/page/new_session.qtpl:12
+	partial.StreamPasswordInput(qw422016, "password", "password", "Password")
+//line view/page/new_session.qtpl:12
+	qw422016.N().S(`
+      `)
+//line view/page/new_session.qtpl:13
+	partial.StreamSubmitButton(qw422016, "Login")
+//line view/page/new_session.qtpl:13
+	qw422016.N().S(`
     </div>
   </form>
 `)

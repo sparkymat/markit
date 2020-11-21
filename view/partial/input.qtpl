@@ -1,0 +1,7 @@
+{% func TextInput(id string, name string, placeholder string) %}
+  <input type="text" name="{%s name %}" id="{%s id %}" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-3" placeholder="{%s placeholder %}" />
+{% endfunc %}
+
+{% func PasswordInput(id string, name string, placeholder string) %}
+  <input type="password" name="{%s name %}" id="{%s id %}" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-3" placeholder="{%s placeholder %}" />
+{% endfunc %}

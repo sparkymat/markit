@@ -7,10 +7,10 @@
 {% func sessionForm() %}
   <form action="/login" method="POST">
     <div class="pt-1">
-      <h3 class="text-3xl text-gray-900 font-light mb-3 mt-3">Login</h4>
-      <input type="text" name="username" id="username" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-3" placeholder="Username" />
-      <input type="password" name="password" id="password" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-2" placeholder="Password" />
-      <input type="submit" class="bg-blue-500 hover:bg-blue-600 hover:shadow-inner text-white font-bold font-mono w-full p-4 mt-2 rounded-sm shadow" value="Login" />
+      {%= partial.SubHeading("Login") %}
+      {%= partial.TextInput("username", "username", "Username") %}
+      {%= partial.PasswordInput("password", "password", "Password") %}
+      {%= partial.SubmitButton("Login") %}
     </div>
   </form>
 {% endfunc %}

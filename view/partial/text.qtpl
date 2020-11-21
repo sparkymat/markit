@@ -1,0 +1,3 @@
+{% func SubHeading(title string) %}
+  <h3 class="text-3xl text-gray-900 font-light mb-3 mt-3">{%s title %}</h3>
+{% endfunc %}
