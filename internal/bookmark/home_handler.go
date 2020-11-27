@@ -13,6 +13,6 @@ func HomeHandler(c echo.Context) error {
 	span := newrelic.FromContext(c.Request().Context()).StartSegment("bookmark_home_handler")
 	defer span.End()
 
-	html := view.Layout("Finch Bookmark", page.BookmarkHome())
+	html := view.Layout("mark_it!", page.BookmarkHome())
 	return c.HTML(http.StatusOK, html)
 }

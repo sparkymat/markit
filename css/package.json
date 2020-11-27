@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "./node_modules/.bin/postcss --use autoprefixer --use tailwindcss --use cssnano -o ../public/css/main.css src/index.css"
+    "build": "./node_modules/.bin/postcss --use autoprefixer --use postcss-import --use tailwindcss --use cssnano -o ../public/css/main.css src/index.css"
   },
   "dependencies": {
     "autoprefixer": "^10.0.2",

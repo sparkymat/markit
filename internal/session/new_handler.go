@@ -13,6 +13,6 @@ func NewHandler(c echo.Context) error {
 	span := newrelic.FromContext(c.Request().Context()).StartSegment("session_new_handler")
 	defer span.End()
 
-	html := view.Layout("Finchbook | Login", page.NewSession())
+	html := view.Layout("mark_it! | login", page.NewSession())
 	return c.HTML(http.StatusOK, html)
 }

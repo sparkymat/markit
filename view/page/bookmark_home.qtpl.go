@@ -26,7 +26,7 @@ func StreamBookmarkHome(qw422016 *qt422016.Writer) {
 	qw422016.N().S(`
   `)
 //line view/page/bookmark_home.qtpl:4
-	partial.StreamSubHeading(qw422016, "Bookmarks")
+	partial.StreamDropdown(qw422016, map[string]string{"Home": "/"})
 //line view/page/bookmark_home.qtpl:4
 	qw422016.N().S(`
 `)

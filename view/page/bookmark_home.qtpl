@@ -1,5 +1,5 @@
 {% import "github.com/sparkymat/markit/view/partial" %}
 
 {% func BookmarkHome() %}
-  {%= partial.SubHeading("Bookmarks") %}
+  {%= partial.Dropdown(map[string]string{"Home": "/"}) %}
 {% endfunc %}
