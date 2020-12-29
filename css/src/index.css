@@ -1,8 +1,0 @@
-@import "tailwindcss/base";
-
-@import "tailwindcss/components";
-@import "./components/dropdown.css";
-
-@import "tailwindcss/utilities";
-
-@import "./icons.css";
