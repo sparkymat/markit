@@ -64,55 +64,49 @@ func streamsessionForm(qw422016 *qt422016.Writer) {
 //line view/page/new_session.qtpl:7
 	qw422016.N().S(`
   <form action="/login" method="POST">
-    <div class="pt-1">
-      `)
+    <h3>Login</h3>
+    `)
 //line view/page/new_session.qtpl:10
-	partial.StreamSubHeading(qw422016, "Login")
-//line view/page/new_session.qtpl:10
-	qw422016.N().S(`
-      `)
-//line view/page/new_session.qtpl:11
 	partial.StreamTextInput(qw422016, "username", "username", "Username")
+//line view/page/new_session.qtpl:10
+	qw422016.N().S(`
+    `)
+//line view/page/new_session.qtpl:11
+	partial.StreamPasswordInput(qw422016, "password", "password", "Password")
 //line view/page/new_session.qtpl:11
 	qw422016.N().S(`
-      `)
+    `)
 //line view/page/new_session.qtpl:12
-	partial.StreamPasswordInput(qw422016, "password", "password", "Password")
-//line view/page/new_session.qtpl:12
-	qw422016.N().S(`
-      `)
-//line view/page/new_session.qtpl:13
 	partial.StreamSubmitButton(qw422016, "Login")
-//line view/page/new_session.qtpl:13
+//line view/page/new_session.qtpl:12
 	qw422016.N().S(`
-    </div>
   </form>
 `)
-//line view/page/new_session.qtpl:16
+//line view/page/new_session.qtpl:14
 }
 
-//line view/page/new_session.qtpl:16
+//line view/page/new_session.qtpl:14
 func writesessionForm(qq422016 qtio422016.Writer) {
-//line view/page/new_session.qtpl:16
+//line view/page/new_session.qtpl:14
 	qw422016 := qt422016.AcquireWriter(qq422016)
-//line view/page/new_session.qtpl:16
+//line view/page/new_session.qtpl:14
 	streamsessionForm(qw422016)
-//line view/page/new_session.qtpl:16
+//line view/page/new_session.qtpl:14
 	qt422016.ReleaseWriter(qw422016)
-//line view/page/new_session.qtpl:16
+//line view/page/new_session.qtpl:14
 }
 
-//line view/page/new_session.qtpl:16
+//line view/page/new_session.qtpl:14
 func sessionForm() string {
-//line view/page/new_session.qtpl:16
+//line view/page/new_session.qtpl:14
 	qb422016 := qt422016.AcquireByteBuffer()
-//line view/page/new_session.qtpl:16
+//line view/page/new_session.qtpl:14
 	writesessionForm(qb422016)
-//line view/page/new_session.qtpl:16
+//line view/page/new_session.qtpl:14
 	qs422016 := string(qb422016.B)
-//line view/page/new_session.qtpl:16
+//line view/page/new_session.qtpl:14
 	qt422016.ReleaseByteBuffer(qb422016)
-//line view/page/new_session.qtpl:16
+//line view/page/new_session.qtpl:14
 	return qs422016
-//line view/page/new_session.qtpl:16
+//line view/page/new_session.qtpl:14
 }

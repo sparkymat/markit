@@ -6,11 +6,9 @@
 
 {% func sessionForm() %}
   <form action="/login" method="POST">
-    <div class="pt-1">
-      {%= partial.SubHeading("Login") %}
-      {%= partial.TextInput("username", "username", "Username") %}
-      {%= partial.PasswordInput("password", "password", "Password") %}
-      {%= partial.SubmitButton("Login") %}
-    </div>
+    <h3>Login</h3>
+    {%= partial.TextInput("username", "username", "Username") %}
+    {%= partial.PasswordInput("password", "password", "Password") %}
+    {%= partial.SubmitButton("Login") %}
   </form>
 {% endfunc %}

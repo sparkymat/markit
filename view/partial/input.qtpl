@@ -1,7 +1,17 @@
 {% func TextInput(id string, name string, placeholder string) %}
-  <input type="text" name="{%s name %}" id="{%s id %}" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-3" placeholder="{%s placeholder %}" />
+  <div class="row">
+    <div class="input-field col s12">
+      <input placeholder="{%s placeholder %}" name="{%s name %}" id="{%s id %}" type="text" class="validate">
+      <label for="{%s id %}">{%s placeholder %}</label>
+    </div>
+  </div>
 {% endfunc %}
 
 {% func PasswordInput(id string, name string, placeholder string) %}
-  <input type="password" name="{%s name %}" id="{%s id %}" class="text-2xl font-light border rounded-sm shadow-inner w-full p-2 mb-3" placeholder="{%s placeholder %}" />
+  <div class="row">
+    <div class="input-field col s12">
+      <input placeholder="{%s placeholder %}" name="{%s name %}" id="{%s id %}" type="password" class="validate">
+      <label for="{%s id %}">{%s placeholder %}</label>
+    </div>
+  </div>
 {% endfunc %}

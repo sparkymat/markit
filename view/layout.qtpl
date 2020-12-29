@@ -1,5 +1,3 @@
-{% import "github.com/sparkymat/markit/view/partial" %}
-
 {% func Layout(title string, content string) %}
   <!DOCTYPE html>
   <html>
@@ -10,13 +8,13 @@
       <meta name="keywords" content="bookmark,bookmarks">
       <meta name="author" content="sparkymat">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" type="text/css" href="/css/main.css">
+      <link rel="stylesheet" type="text/css" href="/css/material-icons.css">
+      <link rel="stylesheet" type="text/css" href="/css/materialize.min.css" media="screen,projection">
     </head>
     <body>
-      {%= partial.Logo() %}
-      <div uk-grid>
-        {%s= content %}
-      </div>
+      <h1>markit!</h1>
+      {%s= content %}
+      <script type="text/javascript" src="/js/materialize.min.js"></script>
     </body>
   </html>
 {% endfunc %}

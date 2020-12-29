@@ -1,6 +1,6 @@
 package middleware
 
-//go:generate mockery --name=UnauthConfig --case=snake
+//go:generate go run github.com/vektra/mockery/v2 --name=UnauthConfig --case=snake
 
 import (
 	"net/http"

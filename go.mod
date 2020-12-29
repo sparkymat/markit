@@ -14,6 +14,7 @@ require (
 	github.com/newrelic/go-agent/v3 v3.9.0
 	github.com/stretchr/testify v1.4.0
 	github.com/valyala/quicktemplate v1.6.3
+	github.com/vektra/mockery/v2 v2.5.1 // indirect
 	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20191108220845-16a3f7862a1a // indirect
