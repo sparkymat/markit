@@ -1,3 +1,0 @@
-{% func SubmitButton(label string) %}
-  <button type="submit" class="waves-light btn">{%s label %}</button>
-{% endfunc %}
