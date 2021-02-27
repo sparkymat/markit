@@ -1,0 +1,4 @@
+h3 New bookmark
+= form_with scope: :bookmark, url: bookmarks_path do |f|
+  = f.text_field :link
+  = f.submit

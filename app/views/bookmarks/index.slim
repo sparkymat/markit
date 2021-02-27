@@ -1,0 +1,6 @@
+h3 Bookmarks
+- @bookmarks.each do |b|
+  .bookmark
+    = link_to b.link do
+      h3 = b.title || b.link
+
