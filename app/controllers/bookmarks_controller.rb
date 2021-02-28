@@ -1,8 +1,19 @@
 class BookmarksController < ApplicationController
   before_action :authenticate_user!
 
+  PAGE_SIZE = 30
+
   def index
-    @bookmarks = current_user.bookmarks.order(updated_at: :desc).limit(10)
+    @page = params[:p] || 1
+
+    total = current_user.bookmarks.count
+    @last_page = [(total.to_f/PAGE_SIZE).ceil, 1].max
+    @page = [@page, @last_page].min
+
+    offset = (@page - 1)*PAGE_SIZE
+
+    @bookmarks = current_user.bookmarks.order(updated_at: :desc).offset(offset).limit(PAGE_SIZE)
+    @has_more = @last_page > @page*PAGE_SIZE
   end
 
   def new
@@ -11,7 +22,7 @@ class BookmarksController < ApplicationController
   def create
     current_user.bookmarks.create!(bookmark_params)
 
-    redirect_to bookmarks_path
+    redirect_to root_path
   end
 
   protected
