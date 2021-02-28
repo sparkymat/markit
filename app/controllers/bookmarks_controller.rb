@@ -20,7 +20,9 @@ class BookmarksController < ApplicationController
   end
 
   def create
-    current_user.bookmarks.create!(bookmark_params)
+    bookmark = current_user.bookmarks.create!(bookmark_params)
+
+    FetchLinkDetailsJob.perform_later bookmark.id
 
     redirect_to root_path
   end
