@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :bookmarks, only: [:new, :create]
 
   root to: 'bookmarks#index'
+
+  mount Sidekiq::Web => "/sidekiq"
 end

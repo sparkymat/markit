@@ -22,7 +22,7 @@ class BookmarksController < ApplicationController
   def create
     bookmark = current_user.bookmarks.create!(bookmark_params)
 
-    FetchLinkDetailsJob.perform_later bookmark.id
+    FetchLinkDetailsWorker.perform_async bookmark.id
 
     redirect_to root_path
   end
