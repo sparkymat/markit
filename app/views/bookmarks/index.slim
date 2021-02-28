@@ -18,9 +18,10 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   - @bookmarks.each_with_index do |b, i|
     .bookmark.d-flex.flex-column.pb-4.align-items-start
       - title = b.title || '[unknown]'
-      = link_to b.link, target: '_blank', class: 'd-flex flex-wrap flex-row align-items-center flex-shrink-1 text-decoration-none fw-light text-muted' do
-        .fs-3.me-2 = (@start_index + i).to_s + "."
-        .fs-3 = title
+      = link_to b.link, target: '_blank', class: 'd-flex flex-wrap flex-row align-items-center flex-shrink-1 text-decoration-none fw-light text-dark' do
+        .fs-3
+          span.fs-5 = (@start_index + i).to_s + ". "
+          span.fs-3 = title
       = link_to b.link, target: '_blank', class: 'd-flex flex-wrap flex-row align-items-center flex-shrink-1 text-decoration-none fw-light text-muted' do
         - host = URI.parse(b.link).host || b.link
         - before = b.link[0, b.link.index(host)]
@@ -33,4 +34,25 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
           span.fw-lighter.fs-6.text-muted = after
       .flex-row.spacing
         span.fw-light.fs-6.badge.text-muted.bg-light = time_ago_in_words(b.created_at) + " ago"
-
+  nav aria-label="Page navigation"
+  ul.pagination.justify-content-center
+    - if @page != 1
+      li.page-item
+        = link_to 'First', root_path(p: 1), class: 'page-link link-success'
+    - if @page > 2
+      li.page-item
+        = link_to @page-2, root_path(p: @page-2), class: 'page-link link-success'
+    - if @page > 1
+      li.page-item
+        = link_to @page-1, root_path(p: @page-1), class: 'page-link link-success'
+    li.page-item.disabled
+      .page-link = @page
+    - if @last_page > @page
+      li.page-item
+        = link_to @page+1, root_path(p: @page+1), class: 'page-link link-success'
+    - if @last_page > (@page+1)
+      li.page-item
+        = link_to @page+2, root_path(p: @page+2), class: 'page-link link-success'
+    - if @last_page != @page
+      li.page-item
+        = link_to 'Last', root_path(p: @last_page), class: 'page-link link-success'
