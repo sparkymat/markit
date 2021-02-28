@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Markit
+    title = yield(:title) || 'markit!'
     meta name="viewport" content="width=device-width,initial-scale=1"
     = csrf_meta_tags
     = csp_meta_tag
@@ -10,5 +10,5 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
-    .container-fluid
+    .container-fluid.p-0
       = yield

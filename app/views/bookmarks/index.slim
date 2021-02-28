@@ -1,6 +1,28 @@
-h3 Bookmarks
-- @bookmarks.each do |b|
-  .bookmark
-    = link_to b.link do
-      h3 = b.title || b.link
+= content_for :title do
+  | markit! / #{@page}
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    = link_to 'markit!', '#', class: 'navbar-brand'
+    button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarSupportedContent
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          = link_to 'Home', '#', class: 'nav-link active', aria: {current: 'page'}
+        li.nav-item
+          = link_to 'Reading list', '#', class: 'nav-link'
+      form.d-flex
+        input.form-control.me-2 type="search" placeholder="Search" aria-label="Search"
+      = link_to 'New bookmark', new_bookmark_path, class: 'btn btn-secondary'
+.container-lg.py-4
+  - @bookmarks.each_with_index do |b, i|
+    .bookmark.d-flex.flex-column.pb-4.align-items-start
+      = link_to b.link, target: '_blank', class: 'd-flex flex-row align-items-center flex-shrink-1 text-decoration-none fw-light text-muted' do
+        .fs-3.me-2 = (@start_index + i).to_s + "."
+        .fs-3 = (b.title || b.link)
+      .flex-row.spacing
+        - host = URI.parse(b.link).host
+        - unless host.blank?
+          span.fw-light.fs-6.badge.text-light.bg-dark.me-2 = host
+        span.fw-light.fs-6.badge.text-muted.bg-light = time_ago_in_words(b.created_at) + " ago"
 

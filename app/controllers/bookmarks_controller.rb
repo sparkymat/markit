@@ -1,10 +1,11 @@
 class BookmarksController < ApplicationController
   before_action :authenticate_user!
 
-  PAGE_SIZE = 30
+  PAGE_SIZE = 10
 
   def index
-    @page = params[:p] || 1
+    @page = params[:p].to_i
+    @page = 1 if @page == 0
 
     total = current_user.bookmarks.count
     @last_page = [(total.to_f/PAGE_SIZE).ceil, 1].max
@@ -14,6 +15,8 @@ class BookmarksController < ApplicationController
 
     @bookmarks = current_user.bookmarks.order(updated_at: :desc).offset(offset).limit(PAGE_SIZE)
     @has_more = @last_page > @page*PAGE_SIZE
+    @start_index = (@page-1)*PAGE_SIZE + 1
+    @end_index = [@page*PAGE_SIZE, total].min
   end
 
   def new
