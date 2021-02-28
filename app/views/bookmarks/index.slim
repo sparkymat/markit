@@ -17,12 +17,20 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
 .container-lg.py-4
   - @bookmarks.each_with_index do |b, i|
     .bookmark.d-flex.flex-column.pb-4.align-items-start
-      = link_to b.link, target: '_blank', class: 'd-flex flex-row align-items-center flex-shrink-1 text-decoration-none fw-light text-muted' do
+      - title = b.title || '[unknown]'
+      = link_to b.link, target: '_blank', class: 'd-flex flex-wrap flex-row align-items-center flex-shrink-1 text-decoration-none fw-light text-muted' do
         .fs-3.me-2 = (@start_index + i).to_s + "."
-        .fs-3 = (b.title || b.link)
+        .fs-3 = title
+      = link_to b.link, target: '_blank', class: 'd-flex flex-wrap flex-row align-items-center flex-shrink-1 text-decoration-none fw-light text-muted' do
+        - host = URI.parse(b.link).host || b.link
+        - before = b.link[0, b.link.index(host)]
+        - after = b.link[b.link.index(host) + host.length, b.link.length-1]
+
+        - if before.present?
+          span.fw-lighter.fs-6.text-muted = before
+        span.fw-normal.fs-6.text-dark = host
+        - if after.present?
+          span.fw-lighter.fs-6.text-muted = after
       .flex-row.spacing
-        - host = URI.parse(b.link).host
-        - unless host.blank?
-          span.fw-light.fs-6.badge.text-light.bg-dark.me-2 = host
         span.fw-light.fs-6.badge.text-muted.bg-light = time_ago_in_words(b.created_at) + " ago"
 
