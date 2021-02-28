@@ -3,5 +3,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :bookmarks, only: [:new, :create, :index]
+  resources :bookmarks, only: [:new, :create]
+
+  root to: 'bookmarks#index'
 end
