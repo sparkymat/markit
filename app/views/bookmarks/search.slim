@@ -1,5 +1,5 @@
 = content_for :title do
-  | markit! / #{@page}
+  | markit! / #{params[:q]} / #{@page}
 nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   .container-fluid
     = link_to 'markit!', '#', class: 'navbar-brand'
