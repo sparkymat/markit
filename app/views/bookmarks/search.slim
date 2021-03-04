@@ -12,9 +12,10 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         li.nav-item
           = link_to 'Reading list', '#', class: 'nav-link'
       = form_with url: search_path, class: 'd-flex', method: 'GET' do |f|
-        = f.text_field :q, class: 'form-control me-2', type: 'search', placeholder: 'Search', aria: {label: 'Search'}
+        = f.text_field :q, class: 'form-control me-2', type: 'search', placeholder: 'Search', aria: {label: 'Search'}, value: params[:q]
       = link_to 'New bookmark', new_bookmark_path, class: 'btn btn-secondary'
 .container-lg.py-4
+  h5 Search results for '#{params[:q]}'
   - @bookmarks.each_with_index do |b, i|
     .bookmark.d-flex.flex-column.pb-4.align-items-start
       - title = b.title || '[unknown]'
@@ -38,21 +39,21 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   ul.pagination.justify-content-center
     - if @page != 1
       li.page-item
-        = link_to 'First', root_path(p: 1), class: 'page-link link-success'
+        = link_to 'First', search_path(q: params[:q], p: 1), class: 'page-link link-success'
     - if @page > 2
       li.page-item
-        = link_to @page-2, root_path(p: @page-2), class: 'page-link link-success'
+        = link_to @page-2, search_path(q: params[:q], p: @page-2), class: 'page-link link-success'
     - if @page > 1
       li.page-item
-        = link_to @page-1, root_path(p: @page-1), class: 'page-link link-success'
+        = link_to @page-1, search_path(q: params[:q], p: @page-1), class: 'page-link link-success'
     li.page-item.disabled
       .page-link = @page
     - if @last_page > @page
       li.page-item
-        = link_to @page+1, root_path(p: @page+1), class: 'page-link link-success'
+        = link_to @page+1, search_path(q: params[:q], p: @page+1), class: 'page-link link-success'
     - if @last_page > (@page+1)
       li.page-item
-        = link_to @page+2, root_path(p: @page+2), class: 'page-link link-success'
+        = link_to @page+2, search_path(q: params[:q], p: @page+2), class: 'page-link link-success'
     - if @last_page != @page
       li.page-item
-        = link_to 'Last', root_path(p: @last_page), class: 'page-link link-success'
+        = link_to 'Last', search_path(q: params[:q], p: @last_page), class: 'page-link link-success'
