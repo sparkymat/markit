@@ -12,7 +12,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
           = link_to 'Reading list', '#', class: 'nav-link'
       = form_with url: search_path, class: 'd-flex', method: 'GET' do |f|
         = f.text_field :q, class: 'form-control me-2', type: 'search', placeholder: 'Search', aria: {label: 'Search'}, value: query
-      = link_to 'New bookmark', new_bookmark_path, class: 'btn btn-secondary'
+      = link_to 'New bookmark', 'javascript:void(0)', class: 'btn btn-secondary', data: {'bs-toggle' => 'modal', 'bs-target' => '#addModal'}
 .container-lg.py-4
   - bookmarks.each_with_index do |b, i|
     .bookmark.d-flex.flex-column.pb-4.align-items-start
@@ -55,3 +55,16 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
     - if last_page != page
       li.page-item
         = link_to 'Last', page_link.call(p: last_page), class: 'page-link link-success'
+
+// popup
+.modal.fade#addModal tabindex="-1" aria-labelledby="addModal" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      .modal-body
+        | ...
+      .modal-footer
+        button.btn.btn-secondary type="button" data-bs-dismiss="modal" Close
+        button.btn.btn-primary type="button" Save changes
