@@ -1,3 +1,3 @@
 = content_for :title do
   | markit! / #{@page}
-= render partial: 'bookmarks/list', locals: {bookmarks: @bookmarks, page: @page, last_page: @last_page}
+= render partial: 'bookmarks/list', locals: {bookmarks: @bookmarks, page: @page, last_page: @last_page, query: @query, page_link: ->(p:) { root_path(p: p) }}

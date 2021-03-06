@@ -31,7 +31,8 @@ class BookmarksController < ApplicationController
   end
 
   def search
-    query = "*" + params[:q] + "*"
+    @query = params[:q]
+    query = "*" + @query + "*"
 
     @page = params[:p].to_i
     @page = 1 if @page == 0

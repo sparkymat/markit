@@ -11,7 +11,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         li.nav-item
           = link_to 'Reading list', '#', class: 'nav-link'
       = form_with url: search_path, class: 'd-flex', method: 'GET' do |f|
-        = f.text_field :q, class: 'form-control me-2', type: 'search', placeholder: 'Search', aria: {label: 'Search'}
+        = f.text_field :q, class: 'form-control me-2', type: 'search', placeholder: 'Search', aria: {label: 'Search'}, value: query
       = link_to 'New bookmark', new_bookmark_path, class: 'btn btn-secondary'
 .container-lg.py-4
   - bookmarks.each_with_index do |b, i|
@@ -37,21 +37,21 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   ul.pagination.justify-content-center
     - if page != 1
       li.page-item
-        = link_to 'First', root_path(p: 1), class: 'page-link link-success'
+        = link_to 'First', page_link.call(p: 1), class: 'page-link link-success'
     - if page > 2
       li.page-item
-        = link_to page-2, root_path(p: page-2), class: 'page-link link-success'
+        = link_to page-2, page_link.call(p: page-2), class: 'page-link link-success'
     - if page > 1
       li.page-item
-        = link_to page-1, root_path(p: page-1), class: 'page-link link-success'
+        = link_to page-1, page_link.call(p: page-1), class: 'page-link link-success'
     li.page-item.disabled
       .page-link = page
     - if last_page > page
       li.page-item
-        = link_to page+1, root_path(p: page+1), class: 'page-link link-success'
+        = link_to page+1, page_link.call(p: page+1), class: 'page-link link-success'
     - if last_page > (page+1)
       li.page-item
-        = link_to page+2, root_path(p: page+2), class: 'page-link link-success'
+        = link_to page+2, page_link.call(p: page+2), class: 'page-link link-success'
     - if last_page != page
       li.page-item
-        = link_to 'Last', root_path(p: last_page), class: 'page-link link-success'
+        = link_to 'Last', page_link.call(p: last_page), class: 'page-link link-success'
