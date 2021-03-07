@@ -14,3 +14,12 @@ Turbolinks.start()
 ActiveStorage.start()
 
 require("../stylesheets/main.scss")
+
+document.addEventListener('DOMContentLoaded', function() {
+  var addModal = document.getElementById('addModal')
+  addModal.addEventListener('show.bs.modal', function (event) {
+    var linkInput = document.querySelector('#link');
+    linkInput.focus();
+    document.execCommand('Paste');
+  });
+});

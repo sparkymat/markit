@@ -60,13 +60,13 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
 .modal.fade#addModal tabindex="-1" aria-labelledby="addModal" aria-hidden="true"
   .modal-dialog
     .modal-content
-      .modal-header
-        h5.modal-title#addModalLabel Add bookmark...
-        button.btn-close type="button" data-bs-dismiss="modal" aria-label="Close"
-      .modal-body
-        = form_with url: bookmarks_path, method: :post do |f|
+      = form_with model: Bookmark.new, method: :post do |f|
+        .modal-header
+          h5.modal-title#addModalLabel Add bookmark...
+          button.btn-close type="button" data-bs-dismiss="modal" aria-label="Close"
+        .modal-body
           .form-floating
             = f.text_field :link, class: 'form-control', placeholder: 'URL'
             = f.label :link, label: 'URL'
-      .modal-footer
-        button.btn.btn-primary type="button" Add
+        .modal-footer
+          = f.submit 'Add', class: 'btn btn-primary'
