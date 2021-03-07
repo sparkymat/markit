@@ -61,10 +61,12 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   .modal-dialog
     .modal-content
       .modal-header
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        h5.modal-title#addModalLabel Add bookmark...
+        button.btn-close type="button" data-bs-dismiss="modal" aria-label="Close"
       .modal-body
-        h3 foo
+        = form_with url: bookmarks_path, method: :post do |f|
+          .form-floating
+            = f.text_field :link, class: 'form-control', placeholder: 'URL'
+            = f.label :link, label: 'URL'
       .modal-footer
-        button.btn.btn-secondary type="button" data-bs-dismiss="modal" Close
-        button.btn.btn-primary type="button" Save changes
+        button.btn.btn-primary type="button" Add
