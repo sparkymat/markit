@@ -1,0 +1,13 @@
+.modal.fade#addModal tabindex="-1" aria-labelledby="addModal" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      = form_with model: Bookmark.new, method: :post do |f|
+        .modal-header
+          h5.modal-title#addModalLabel Add bookmark...
+          button.btn-close type="button" data-bs-dismiss="modal" aria-label="Close"
+        .modal-body
+          .form-floating
+            = f.text_field :link, class: 'form-control', placeholder: 'URL'
+            = f.label :link, label: 'URL'
+        .modal-footer
+          = f.submit 'Add', class: 'btn btn-secondary'

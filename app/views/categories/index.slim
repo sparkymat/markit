@@ -1,24 +1,18 @@
 = render partial: 'layouts/navbar', locals: {query: nil}
+
 .container-lg.py-4
   - if @categories.blank?
     .row
       .card.col-4.offset-4
         .card-body.d-flex.flex-column.align-items-center
           p No categories found
-          = link_to 'Add new', '#', class: 'btn btn-secondary'
+          = link_to 'Add new', '#categoryModal', class: 'btn btn-secondary', data: {'bs-toggle' => 'modal'}
   - else
+    = link_to 'Add new', '#categoryModal', class: 'btn btn-secondary', data: {'bs-toggle' => 'modal'}
     - @categories.each do |c|
-      = c.name
+      p.fs-3
+        = c.name
+        i class="bi-#{c.icon}"
 
-// popup
-.modal.fade#categoryModal tabindex="-1" aria-labelledby="categoryModal" aria-hidden="true"
-  .modal-dialog
-    .modal-content
-      .modal-header
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      .modal-body
-        | ...
-      .modal-footer
-        button.btn.btn-secondary type="button" data-bs-dismiss="modal" Close
-        button.btn.btn-primary type="button" Save changes
+= render partial: 'bookmarks/add_modal'
+= render partial: 'categories/add_modal'

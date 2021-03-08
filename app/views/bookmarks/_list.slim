@@ -1,4 +1,5 @@
 = render partial: 'layouts/navbar', locals: {query: @query}
+
 .container-lg.py-4
   - bookmarks.each_with_index do |b, i|
     .bookmark.d-flex.flex-column.pb-4.align-items-start
@@ -42,17 +43,4 @@
       li.page-item
         = link_to 'Last', page_link.call(p: last_page), class: 'page-link link-success'
 
-// popup
-.modal.fade#addModal tabindex="-1" aria-labelledby="addModal" aria-hidden="true"
-  .modal-dialog
-    .modal-content
-      = form_with model: Bookmark.new, method: :post do |f|
-        .modal-header
-          h5.modal-title#addModalLabel Add bookmark...
-          button.btn-close type="button" data-bs-dismiss="modal" aria-label="Close"
-        .modal-body
-          .form-floating
-            = f.text_field :link, class: 'form-control', placeholder: 'URL'
-            = f.label :link, label: 'URL'
-        .modal-footer
-          = f.submit 'Add', class: 'btn btn-primary'
+= render partial: 'bookmarks/add_modal'

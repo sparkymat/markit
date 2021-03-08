@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, authentication_keys: [:username]
 
   has_many :bookmarks
+  has_many :categories
 end
