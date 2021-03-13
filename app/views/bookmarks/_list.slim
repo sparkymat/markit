@@ -24,7 +24,8 @@
           =<> time_ago_in_words(b.created_at)
           | ago, under
         - if b.category.present?
-          span.badge.bg-secondary.fs-7.text-info = b.category.name
+          = link_to category_path(b.category) do
+            span.badge.bg-secondary.fs-7.text-info = b.category.name
         - else
           span.badge.bg-secondary.fs-7.text-info Uncategorised
   nav aria-label="Page navigation"

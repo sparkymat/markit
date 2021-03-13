@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   }
 
   resources :bookmarks, only: [:create]
-  resources :categories, only: [:index, :create]
+  resources :categories, path: 'c', only: [:index, :create, :show]
 
   get 'search', to: 'bookmarks#search', as: 'search'
   root to: 'bookmarks#index'
