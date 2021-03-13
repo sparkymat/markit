@@ -28,6 +28,7 @@
             span.badge.bg-secondary.fs-7.text-info = b.category.name
         - else
           span.badge.bg-secondary.fs-7.text-info Uncategorised
+        = link_to 'edit', '#', class: 'ms-2 text-decoration-none text-info', remote: true
   nav aria-label="Page navigation"
   ul.pagination.justify-content-center
     - if page != 1
