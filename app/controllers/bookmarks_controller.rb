@@ -4,6 +4,8 @@ class BookmarksController < ApplicationController
   PAGE_SIZE = 10
 
   def index
+    @categories = current_user.categories.order(name: :asc)
+
     @page = params[:p].to_i
     @page = 1 if @page == 0
 
@@ -13,13 +15,10 @@ class BookmarksController < ApplicationController
 
     offset = (@page - 1)*PAGE_SIZE
 
-    @bookmarks = current_user.bookmarks.order(updated_at: :desc).offset(offset).limit(PAGE_SIZE)
+    @bookmarks = current_user.bookmarks.order(updated_at: :desc).offset(offset).limit(PAGE_SIZE).includes(:category)
     @has_more = @last_page > @page*PAGE_SIZE
     @start_index = (@page-1)*PAGE_SIZE + 1
     @end_index = [@page*PAGE_SIZE, total].min
-  end
-
-  def new
   end
 
   def create
@@ -43,7 +42,7 @@ class BookmarksController < ApplicationController
 
     offset = (@page - 1)*PAGE_SIZE
 
-    @bookmarks = current_user.bookmarks.search(query).records.offset(offset).limit(PAGE_SIZE)
+    @bookmarks = current_user.bookmarks.search(query).records.offset(offset).limit(PAGE_SIZE).includes(:category)
     @has_more = @last_page > @page*PAGE_SIZE
     @start_index = (@page-1)*PAGE_SIZE + 1
     @end_index = [@page*PAGE_SIZE, total].min
@@ -52,6 +51,6 @@ class BookmarksController < ApplicationController
   protected
 
   def bookmark_params
-    params.require(:bookmark).permit(:link)
+    params.require(:bookmark).permit(:link, :category_id)
   end
 end

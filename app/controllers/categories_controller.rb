@@ -8,6 +8,8 @@ class CategoriesController < ApplicationController
 
   def create
     raise "invalid icon" unless icons.include?(category_params[:icon]&.to_sym)
+    raise "limit reached" if current_user.categories.count >= User.CATEGORY_LIMIT
+
     current_user.categories.create!(category_params)
     redirect_to categories_path
   end

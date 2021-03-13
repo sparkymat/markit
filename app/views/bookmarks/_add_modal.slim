@@ -9,5 +9,7 @@
           .form-floating
             = f.text_field :link, class: 'form-control', placeholder: 'URL'
             = f.label :link, label: 'URL'
+          - unless @categories.blank?
+            = f.select :category_id, @categories.map{|c| [c.name, c.id] }, class: 'form-selet', include_blank: true
         .modal-footer
           = f.submit 'Add', class: 'btn btn-secondary'

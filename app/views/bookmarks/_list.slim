@@ -19,7 +19,14 @@
         - if after.present?
           span.fw-lighter.fs-6.text-muted = after
       .flex-row.spacing
-        span.fw-light.fs-6.badge.text-muted.bg-light = time_ago_in_words(b.created_at) + " ago"
+        span.fw-light.fs-7.badge.text-muted.bg-light
+          | Added
+          =<> time_ago_in_words(b.created_at)
+          | ago, under
+        - if b.category.present?
+          span.badge.bg-secondary.fs-7.text-info = b.category.name
+        - else
+          span.badge.bg-secondary.fs-7.text-info Uncategorised
   nav aria-label="Page navigation"
   ul.pagination.justify-content-center
     - if page != 1
