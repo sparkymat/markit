@@ -4,22 +4,32 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap"
+import { Modal } from "bootstrap"
 
 Rails.start()
-Turbolinks.start()
 ActiveStorage.start()
 
 require("../stylesheets/main.scss")
 
-document.addEventListener('DOMContentLoaded', function() {
-  var addModal = document.getElementById('addModal')
-  addModal.addEventListener('show.bs.modal', function (event) {
+$(document).ready(() => {
+  $('#addModal').on('show.bs.modal', () => {
     var linkInput = document.querySelector('#link');
     linkInput.focus();
     document.execCommand('Paste');
+  });
+
+  $('.js-remote-modal-link').on('click', (e) => {
+    e.preventDefault();
+    var link = $(e.target).attr('href');
+    $.ajax(link).done((data) => {
+      $('#remoteModal .modal-content').html(data); 
+
+      var remoteModalEl = document.getElementById('remoteModal')
+      var remoteModal = new Modal(remoteModalEl);
+      remoteModal.show();
+    });
   });
 });

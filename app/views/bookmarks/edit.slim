@@ -1,0 +1,8 @@
+.p-2.d-flex.flex-column.align-items-stretch
+  h3.text-center Choose new category
+  .row.p-4
+    - @categories.each do |c|
+      .col-3
+        = link_to bookmark_path(@bookmark, 'bookmark[category_id]' => c.id), method: :patch, class: 'text-decoration-none d-flex flex-column align-items-center' do
+          i.fs-2.text-info class="bi-#{c.icon}"
+          span.fs-5.text-info.text-decoration-none = c.name

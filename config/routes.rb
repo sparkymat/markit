@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :bookmarks, only: [:create]
+  resources :bookmarks, only: [:create, :edit, :update]
   resources :categories, path: 'c', only: [:index, :create, :show]
 
   get 'search', to: 'bookmarks#search', as: 'search'

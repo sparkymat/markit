@@ -7,10 +7,11 @@ html
     = csp_meta_tag
 
     = stylesheet_pack_tag 'application', media: 'all'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-
     link rel="stylesheet" href="/css/bootstrap-icons.css" media="all"
 
   body
     .container-fluid.p-0
       = yield
+    = render partial: 'bookmarks/remote_modal'
+
+    = javascript_pack_tag 'application'
