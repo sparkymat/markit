@@ -1,0 +1,15 @@
+// Navbar
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    = link_to 'markit!', '#', class: 'navbar-brand'
+    button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarSupportedContent
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          = link_to 'Home', '/', class: 'nav-link'
+        li.nav-item
+          = link_to 'Categories', categories_path, class: 'nav-link'
+      = form_with url: search_path, class: 'd-flex', method: :get do |f|
+        = f.text_field :q, class: 'form-control me-2', type: 'search', placeholder: 'Search', aria: {label: 'Search'}, value: query
+      = link_to 'New bookmark', '#addModal', class: 'btn btn-secondary', data: {'bs-toggle' => 'modal'}

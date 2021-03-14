@@ -1,0 +1,32 @@
+= render partial: 'layouts/navbar', locals: {query: nil}
+
+.container-lg.py-4
+  - if @categories.blank?
+    .row
+      .card.col-4.offset-4
+        .card-body.d-flex.flex-column.align-items-center
+          p No categories found
+          = link_to 'Add new', '#categoryModal', class: 'btn btn-info', data: {'bs-toggle' => 'modal'}
+  - else
+    .row
+      = link_to 'Add new', '#categoryModal', class: 'btn btn-info col-sm-12 col-lg-2 offset-lg-10', data: {'bs-toggle' => 'modal'}
+      p
+    table.table
+      thead
+        tr
+          th scope="col" #
+          th scope="col" Name
+          th scope="col" Icon
+          th scope="col" 
+      tbody
+        - @categories.each_with_index do |c, i|
+          tr
+            th scope="row" = i+1
+            td = c.name
+            td
+              i.fs-3 class="bi-#{c.icon}"
+            td
+              = link_to "Open", category_path(c), class: 'btn btn-secondary'
+
+= render partial: 'bookmarks/add_modal'
+= render partial: 'categories/add_modal'

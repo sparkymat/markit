@@ -1,0 +1,13 @@
+Rails.application.routes.draw do
+  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout' }, controllers: {
+    sessions: 'users/sessions'
+  }
+
+  resources :bookmarks, only: [:create, :edit, :update]
+  resources :categories, path: 'c', only: [:index, :create, :show]
+
+  get 'search', to: 'bookmarks#search', as: 'search'
+  root to: 'bookmarks#index'
+
+  mount Sidekiq::Web => "/sidekiq"
+end

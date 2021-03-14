@@ -1,0 +1,23 @@
+= content_for :title do
+  | markit! / categories
+.modal.fade#categoryModal tabindex="-1" aria-labelledby="categoryModal" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      = form_with model: Category.new, method: :post do |f|
+        .modal-header
+          h5.modal-title#categoryModalLabel Add category...
+          button.btn-close type="button" data-bs-dismiss="modal" aria-label="Close"
+        .modal-body
+          .form-floating
+            = f.text_field :name, class: 'form-control', placeholder: 'Name'
+            = f.label :name, label: 'Name'
+          .py-2
+            h5 Icon
+            .row
+              - icons.each do |i|
+                .col
+                  .form-check.fs-4
+                    = f.radio_button :icon, i, class: 'form-check-input'
+                    i class="bi-#{i}"
+        .modal-footer
+          = f.submit 'Add', class: 'btn btn-secondary'

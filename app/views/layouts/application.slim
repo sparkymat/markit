@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title = yield(:title) || 'markit!'
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_pack_tag 'application', media: 'all'
+    link rel="stylesheet" href="/css/bootstrap-icons.css" media="all"
+
+  body
+    .container-fluid.p-0
+      = yield
+    = render partial: 'bookmarks/remote_modal'
+
+    = javascript_pack_tag 'application'
