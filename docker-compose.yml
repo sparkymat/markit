@@ -6,17 +6,41 @@ services:
     ports:
       - "3000:3000"
     working_dir: /app
+    depends_on:
+      - db
+      - redis
     restart: always
+    links:
+      - db
+      - redis
     environment:
       RAILS_SERVE_STATIC_FILES: 1
-      RAILS_LOG_TO_STDOUT: 1
       RAILS_ENV: production
       SECRET_KEY_BASE: foobar
-      DATABASE_URL: postgres://foolsbarn:foolsbarn@db/markit?pool=5
+      DATABASE_URL: postgres://foobar:foolbar@db/markit?pool=5
+      REDIS_URL: redis://redis:6379/0
+  worker:
+    image: sparkymat/markit-worker:latest
+    working_dir: /app
+    depends_on:
+      - app
+    restart: always
+    links:
+      - db
+      - redis
+    environment:
+      RAILS_ENV: production
+      SECRET_KEY_BASE: foobar
+      DATABASE_URL: postgres://foobar:foobar@db/markit?pool=5
+      REDIS_URL: redis://redis:6379/0
   db:
     image: postgres:13
     restart: always
     environment:
-      POSTGRES_USER: foolsbarn
-      POSTGRES_PASSWORD: foolsbarn
+      POSTGRES_USER: foobar
+      POSTGRES_PASSWORD: foobar
       POSTGRES_DB: markit
+  redis:
+    image: redis:alpine
+    environment:
+     - REDIS_REPLICATION_MODE=master

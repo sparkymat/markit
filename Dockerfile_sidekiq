@@ -1,0 +1,15 @@
+FROM ruby:3.0.0-slim
+
+RUN apt-get update -qq && apt-get install -y make gcc g++ postgresql-client libpq-dev
+WORKDIR /app
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
+RUN bundle install
+
+COPY . /app
+
+COPY bin/start_sidekiq.sh /usr/bin
+RUN chmod +x /usr/bin/start_sidekiq.sh
+EXPOSE 3000
+
+ENTRYPOINT ["start_sidekiq.sh"]
