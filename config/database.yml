@@ -13,6 +13,4 @@ test:
 
 production:
   <<: *default
-  database: markit_production
-  username: markit
-  password: <%= ENV['MARKIT_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>

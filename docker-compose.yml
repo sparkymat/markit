@@ -17,7 +17,7 @@ services:
       RAILS_SERVE_STATIC_FILES: 1
       RAILS_ENV: production
       SECRET_KEY_BASE: foobar
-      DATABASE_URL: postgres://foobar:foolbar@db/markit?pool=5
+      DATABASE_URL: postgresql://foobar:foobar@db/markit?pool=5
       REDIS_URL: redis://redis:6379/0
   worker:
     image: sparkymat/markit-worker:latest
@@ -31,7 +31,7 @@ services:
     environment:
       RAILS_ENV: production
       SECRET_KEY_BASE: foobar
-      DATABASE_URL: postgres://foobar:foobar@db/markit?pool=5
+      DATABASE_URL: postgresql://foobar:foobar@db/markit?pool=5
       REDIS_URL: redis://redis:6379/0
   db:
     image: postgres:13
