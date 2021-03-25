@@ -5,7 +5,9 @@ class Ability
 
   def initialize(user)
     if user.is_admin
-      can :manage, User
+      can :manage, User do |u|
+        !u.is_admin || (u.id == user.id)
+      end
     end
   end
 end

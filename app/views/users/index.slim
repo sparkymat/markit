@@ -1,0 +1,28 @@
+= render partial: 'layouts/navbar', locals: {query: nil}
+
+.container-lg.py-4
+  - if @users.blank?
+    .row
+      .card.col-4.offset-4
+        .card-body.d-flex.flex-column.align-items-center
+          p No users found
+          = link_to 'Add new', '#userModal', class: 'btn btn-info', data: {'bs-toggle' => 'modal'}
+  - else
+    .row
+      = link_to 'Add new', '#userModal', class: 'btn btn-info col-sm-12 col-lg-2 offset-lg-10', data: {'bs-toggle' => 'modal'}
+      p
+    table.table
+      thead
+        tr
+          th scope="col" #
+          th scope="col" Name
+          th scope="col" Role
+      tbody
+        - @users.each_with_index do |u, i|
+          tr
+            th scope="row" = i+1
+            td = u.username
+            td = u.is_admin? ? 'Admin' : 'User'
+= render partial: 'bookmarks/add_modal'
+= render partial: 'categories/add_modal'
+= render partial: 'users/add_modal'
