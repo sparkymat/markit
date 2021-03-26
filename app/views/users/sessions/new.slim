@@ -1,0 +1,28 @@
+// Navbar
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    = link_to 'markit!', '#', class: 'navbar-brand'
+
+.container-lg.py-4
+  .row
+    .card.col-4.offset-4
+      h4.py-4.text-center Login
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .form-floating.mb-3
+          = f.text_field :username, class: 'form-control', autofocus: true, autocomplete: "username", required: true
+          = f.label :username, label: 'Username'
+
+        .form-floating.mb-3
+          = f.password_field :password, class: 'form-control', autocomplete: "current-password"
+          = f.label :password, label: 'Password'
+
+        - if devise_mapping.rememberable?
+          .form-check.mb-3
+            = f.check_box :remember_me, class: 'form-check-input'
+            = f.label :remember_me, class: 'form-check-label fs-6', label: 'Remember me'
+
+        .actions.d-flex.flex-row
+          = f.submit "Log in", class: 'btn btn-secondary flex-grow-1 mb-2'
+
+      .mb-4
+        //= render "users/shared/links"
