@@ -1,0 +1,12 @@
+= content_for :title do
+  | markit! / import
+= render partial: 'layouts/navbar', locals: {query: @query}
+
+.container-lg.py-4
+  = form_with url: import_bookmarks_path, method: :post do |f|
+    .form-input
+      = f.label :content, class: 'form-label fs-5' do
+        | Links to import
+      = f.text_area :content, class: 'form-control'
+    .form-actions.d-flex.flex-row.my-4
+      = f.submit 'Import', class: 'btn btn-secondary flex-grow-1'

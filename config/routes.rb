@@ -3,10 +3,13 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :bookmarks, only: [:create, :edit, :update]
+  resources :bookmarks, only: [:create, :edit, :update] do
+    get :new_import, on: :collection
+    post :import,    on: :collection
+  end
   resources :categories, only: [:index, :create, :show]
   resources :users, only: [:index, :create] do
-    get :new_admin, on: :collection
+    get :new_admin,     on: :collection
     post :create_admin, on: :collection
   end
 

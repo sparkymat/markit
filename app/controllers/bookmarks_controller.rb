@@ -62,6 +62,17 @@ class BookmarksController < ApplicationController
     redirect_to request.referrer
   end
 
+  def new_import
+  end
+
+  def import
+    content = params[:content]
+
+    current_user.import_bookmarks!(content)
+
+    redirect_to root_path
+  end
+
   protected
 
   def bookmark_params
