@@ -8,4 +8,8 @@ class User < ApplicationRecord
 
   has_many :bookmarks
   has_many :categories
+
+  def self.admin
+    User.find_by(username: 'admin')
+  end
 end

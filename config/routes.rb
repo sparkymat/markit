@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :bookmarks, only: [:create, :edit, :update]
   resources :categories, only: [:index, :create, :show]
   resources :users, only: [:index, :create] do
-    post 'reset_password', on: :member, as: :reset_password
+    get :new_admin, on: :collection
+    post :create_admin, on: :collection
   end
 
   get 'search', to: 'bookmarks#search', as: 'search'

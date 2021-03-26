@@ -1,0 +1,17 @@
+// Navbar
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    = link_to 'markit!', '#', class: 'navbar-brand'
+.container-lg.py-4
+  .row
+    .card.col-4.offset-4
+      p.py-4.text-center No admin user found
+      = form_with model: User.new, url: create_admin_users_path, method: :post do |f|
+        .form-floating.my-2
+          = f.email_field :email, class: 'form-control', placeholder: 'Email', required: true
+          = f.label :email, label: 'Email'
+        .form-floating.my-2
+          = f.password_field :password, class: 'form-control', placeholder: 'Password', required: true
+          = f.label :password, label: 'Password'
+        .form-actions.my-4.d-flex.flex-row
+          = f.submit 'Create admin user', class: 'btn btn-secondary flex-grow-1'
