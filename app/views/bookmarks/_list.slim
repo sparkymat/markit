@@ -29,6 +29,7 @@
         - else
           span.badge.bg-secondary.fs-7.text-info Uncategorised
         = link_to 'edit', edit_bookmark_path(b), class: 'ms-2 text-decoration-none text-info js-remote-modal-link'
+        = link_to 'archive', archive_bookmark_path(b), class: 'ms-2 text-decoration-none text-danger', data: {method: 'post', confirm: 'Are you sure?'}
   nav aria-label="Page navigation"
   ul.pagination.justify-content-center
     - if page != 1

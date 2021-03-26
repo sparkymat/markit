@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :bookmarks, only: [:create, :edit, :update] do
     get :new_import, on: :collection
     post :import,    on: :collection
+    post :archive,   on: :member
   end
   resources :categories, only: [:index, :create, :show]
   resources :users, only: [:index, :create] do

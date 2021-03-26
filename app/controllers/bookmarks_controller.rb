@@ -9,13 +9,13 @@ class BookmarksController < ApplicationController
     @page = params[:p].to_i
     @page = 1 if @page == 0
 
-    total = current_user.bookmarks.count
+    total = current_user.bookmarks.unarchived.count
     @last_page = [(total.to_f/PAGE_SIZE).ceil, 1].max
     @page = [@page, @last_page].min
 
     offset = (@page - 1)*PAGE_SIZE
 
-    @bookmarks = current_user.bookmarks.order(created_at: :desc).offset(offset).limit(PAGE_SIZE).includes(:category)
+    @bookmarks = current_user.bookmarks.unarchived.order(created_at: :desc).offset(offset).limit(PAGE_SIZE).includes(:category)
     @has_more = @last_page > @page*PAGE_SIZE
     @start_index = (@page-1)*PAGE_SIZE + 1
     @end_index = [@page*PAGE_SIZE, total].min
@@ -36,13 +36,13 @@ class BookmarksController < ApplicationController
     @page = params[:p].to_i
     @page = 1 if @page == 0
 
-    total = current_user.bookmarks.search(query).records.count
+    total = current_user.bookmarks.unarchived.search(query).records.count
     @last_page = [(total.to_f/PAGE_SIZE).ceil, 1].max
     @page = [@page, @last_page].min
 
     offset = (@page - 1)*PAGE_SIZE
 
-    @bookmarks = current_user.bookmarks.search(query).records.offset(offset).limit(PAGE_SIZE).includes(:category)
+    @bookmarks = current_user.bookmarks.unarchived.search(query).records.offset(offset).limit(PAGE_SIZE).includes(:category)
     @has_more = @last_page > @page*PAGE_SIZE
     @start_index = (@page-1)*PAGE_SIZE + 1
     @end_index = [@page*PAGE_SIZE, total].min
@@ -71,6 +71,14 @@ class BookmarksController < ApplicationController
     current_user.import_bookmarks!(content)
 
     redirect_to root_path
+  end
+
+  def archive
+    bookmark = current_user.bookmarks.find(params[:id])
+    bookmark.update!({
+      archived_at: DateTime.now,
+    })
+    redirect_to request.referrer
   end
 
   protected
