@@ -5,7 +5,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
 
 .container-lg.py-4
   .row
-    .card.col-4.offset-4
+    .card.col-lg-4.offset-lg-4.col-12
       h4.py-4.text-center Login
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .form-floating.mb-3

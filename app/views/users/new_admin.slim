@@ -4,7 +4,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
     = link_to 'markit!', '#', class: 'navbar-brand'
 .container-lg.py-4
   .row
-    .card.col-4.offset-4
+    .card.col-lg-4.offset-lg-4.col-12
       p.py-4.text-center No admin user found
       = form_with model: User.new, url: create_admin_users_path, method: :post do |f|
         .form-floating.my-2

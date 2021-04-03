@@ -25,9 +25,10 @@
           | ago, under
         - if b.category.present?
           = link_to category_path(b.category) do
-            span.badge.bg-secondary.fs-7.text-info = b.category.name
+            span.badge.bg-secondary.fs-7 = b.category.name
         - else
-          span.badge.bg-secondary.fs-7.text-info Uncategorised
+          span.badge.bg-secondary.fs-7 Uncategorised
+      .flex-row.spacing
         = link_to 'edit', edit_bookmark_path(b), class: 'ms-2 text-decoration-none text-info js-remote-modal-link'
         = link_to 'archive', archive_bookmark_path(b), class: 'ms-2 text-decoration-none text-danger', data: {method: 'post', confirm: 'Are you sure?'}
   nav aria-label="Page navigation"
