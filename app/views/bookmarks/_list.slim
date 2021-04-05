@@ -19,13 +19,13 @@
           =<> b.created_at
           | ago, under
         - if b.categorised?
-          = link_to b.category_path do
+          = link_to b.path_to_category do
             span.badge.bg-secondary.fs-7 = b.category_name
         - else
           span.badge.bg-secondary.fs-7 = b.category_name
       .flex-row.spacing
-        = link_to 'edit', edit_bookmark_path(b), class: 'ms-2 text-decoration-none text-info js-remote-modal-link'
-        = link_to 'archive', archive_bookmark_path(b), class: 'ms-2 text-decoration-none text-danger', data: {method: 'post', confirm: 'Are you sure?'}
+        = link_to 'edit', b.path_to_edit, class: 'ms-2 text-decoration-none text-info js-remote-modal-link'
+        = link_to 'archive', b.path_to_archive, class: 'ms-2 text-decoration-none text-danger', data: {method: 'post', confirm: 'Are you sure?'}
   nav aria-label="Page navigation"
   ul.pagination.justify-content-center
     - if page != 1
