@@ -41,15 +41,15 @@ class BookmarkPresenter
   end
 
   def path_to_category
-    category_path(@category)
+    Rails.application.routes.url_helpers.category_path(@category)
   end
 
   def path_to_edit
-    edit_bookmark_path(@bookmark)
+    Rails.application.routes.url_helpers.edit_bookmark_path(@bookmark)
   end
 
   def path_to_archive
-    archive_bookmark_path(@bookmark)
+    Rails.application.routes.url_helpers.archive_bookmark_path(@bookmark)
   end
 
   def created_at
