@@ -44,7 +44,8 @@ class BookmarksController < ApplicationController
 
     offset = (@page - 1)*PAGE_SIZE
 
-    @bookmarks = current_user.bookmarks.unarchived.search(query).records.offset(offset).limit(PAGE_SIZE).includes(:category)
+    bookmarks = current_user.bookmarks.unarchived.search(query).records.offset(offset).limit(PAGE_SIZE).includes(:category)
+    @bookmarks = bookmarks.map{ |b| BookmarkPresenter.new(b) }
     @has_more = @last_page > @page*PAGE_SIZE
     @start_index = (@page-1)*PAGE_SIZE + 1
     @end_index = [@page*PAGE_SIZE, total].min

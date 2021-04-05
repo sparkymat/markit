@@ -29,7 +29,8 @@ class CategoriesController < ApplicationController
 
     offset = (@page - 1)*PAGE_SIZE
 
-    @bookmarks = @category.bookmarks.order(updated_at: :desc).offset(offset).limit(PAGE_SIZE).includes(:category)
+    bookmarks = @category.bookmarks.order(updated_at: :desc).offset(offset).limit(PAGE_SIZE).includes(:category)
+    @bookmarks = bookmarks.map{ |b| BookmarkPresenter.new(b) }
     @has_more = @last_page > @page*PAGE_SIZE
     @start_index = (@page-1)*PAGE_SIZE + 1
     @end_index = [@page*PAGE_SIZE, total].min
