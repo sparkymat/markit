@@ -1,14 +1,12 @@
 // Navbar
 nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   .container-fluid.d-flex.flex-row
-    = link_to 'markit!', '#', class: 'navbar-brand'
+    = link_to 'markit!', root_path, class: 'navbar-brand'
     = link_to 'New bookmark', '#addModal', class: 'btn btn-secondary d-lg-none', data: {'bs-toggle' => 'modal'}
     button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
       span.navbar-toggler-icon
     .collapse.navbar-collapse#navbarSupportedContent
       ul.navbar-nav.me-auto.mb-2.mb-lg-0
-        li.nav-item
-          = link_to 'Home', '/', class: 'nav-link'
         li.nav-item
           = link_to 'Categories', categories_path, class: 'nav-link'
         li.nav-item
