@@ -3,31 +3,26 @@
 .container-lg.py-4
   - bookmarks.each_with_index do |b, i|
     .bookmark.d-flex.flex-column.pb-4.align-items-start
-      - title = b.title || '[unknown]'
       = link_to b.link, target: '_blank', class: 'd-flex flex-wrap flex-row align-items-center flex-shrink-1 text-decoration-none fw-light text-dark' do
         .fs-3
           span.fs-5 = (@start_index + i).to_s + ". "
-          span.fs-3 = title
+          span.fs-3 = b.title
       = link_to b.link, target: '_blank', class: 'd-flex flex-wrap flex-row align-items-center flex-shrink-1 text-decoration-none fw-light text-muted' do
-        - host = URI.parse(b.link).host rescue b.link&.to_s
-        - before = b.link[0, b.link.index(host)]
-        - after = b.link[b.link.index(host) + host.length, b.link.length-1]
-
-        - if before.present?
-          span.fw-lighter.fs-6.text-muted = before
-        span.fw-normal.fs-6.text-dark = host
-        - if after.present?
-          span.fw-lighter.fs-6.text-muted = after
+        - if b.link_before.present?
+          span.fw-lighter.fs-6.text-muted = b.link_before
+        span.fw-normal.fs-6.text-dark = b.host
+        - if b.link_after.present?
+          span.fw-lighter.fs-6.text-muted = b.link_after
       .flex-row.spacing
         span.fw-light.fs-7.badge.text-muted.bg-light
           | Added
-          =<> time_ago_in_words(b.created_at)
+          =<> b.created_at
           | ago, under
-        - if b.category.present?
-          = link_to category_path(b.category) do
-            span.badge.bg-secondary.fs-7 = b.category.name
+        - if b.categorised?
+          = link_to b.category_path do
+            span.badge.bg-secondary.fs-7 = b.category_name
         - else
-          span.badge.bg-secondary.fs-7 Uncategorised
+          span.badge.bg-secondary.fs-7 = b.category_name
       .flex-row.spacing
         = link_to 'edit', edit_bookmark_path(b), class: 'ms-2 text-decoration-none text-info js-remote-modal-link'
         = link_to 'archive', archive_bookmark_path(b), class: 'ms-2 text-decoration-none text-danger', data: {method: 'post', confirm: 'Are you sure?'}
